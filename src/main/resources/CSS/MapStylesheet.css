@@ -1,0 +1,69 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.map-container {
+    display: flex;
+    justify-content: center; /* Centre la carte horizontalement */
+    align-items: center; /* Centre la carte verticalement */
+    height: 80vh; /* Limite la hauteur à 80% de la fenêtre */
+}
+
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style du popup */
+.leaflet-popup-content {
+    text-align: center; /* Centrage du contenu */
+}
+
+/* Style du titre */
+.leaflet-popup-content h3 {
+    margin: 0 0 10px; /* Espacement du bas */
+    font-size: 18px; /* Taille du titre */
+    color: #333; /* Couleur du titre */
+}
+
+/* Style des infos de la station */
+.station-info {
+    display: flex; /* Utilisation d'un layout flexbox */
+    justify-content: space-between; /* Espacement égal entre les éléments */
+    margin-bottom: 10px; /* Espacement du bas */
+}
+
+/* Style des informations sur les vélos */
+.bike-info {
+    display: flex; /* Utilisation d'un layout flexbox */
+    flex-direction: column; /* Empile les éléments les uns sur les autres */
+    align-items: center; /* Centrage horizontal */
+}
+
+.bike-info img {
+    width: 50px; /* Largeur de l'image */
+    height: auto; /* Hauteur automatique */
+    margin-bottom: 5px; /* Espacement du bas */
+}
+
+.bike-info span {
+    font-size: 14px; /* Taille de la police */
+    color: #666; /* Couleur du texte */
+}
+
+/* Style du paragraphe de la capacité */
+.leaflet-popup-content p {
+    margin: 0; /* Annule les marges par défaut */
+    font-size: 14px; /* Taille de la police */
+    color: #666; /* Couleur du texte */
+}
+
+.fixed-popup {
+    width: 250px;  /* Set a fixed width */
+    height: auto;  /* Allow height to adjust based on content */
+    max-height: 300px;  /* Optional: set a maximum height */
+    overflow-y: auto;  /* Enable scrolling if content exceeds max height */
+}
