@@ -66,8 +66,6 @@ public class GestionUsersController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @javafx.fxml.FXML
@@ -76,10 +74,11 @@ public class GestionUsersController implements Initializable {
         // Vérification si aucun utilisateur n'est sélectionné
         if (selectedUser == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("");
             alert.setTitle("Erreur");
             alert.setContentText("Veuillez sélectionner un utilisateur avant de continuer.");
             alert.showAndWait();
-        }else {
+        } else {
             int idUser = selectedUser.getIdUser();
 
             if (userController.isBlocked(selectedUser)) {
@@ -87,6 +86,7 @@ public class GestionUsersController implements Initializable {
                 userController.updateStatusDeblock(idUser);
                 userController.updateStatusDeblock(idUser);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("");
                 alert.setTitle("");
                 alert.setContentText("L'utilisateur a été débloqué avec succès.");
                 alert.showAndWait();
@@ -94,15 +94,14 @@ public class GestionUsersController implements Initializable {
 
                 userController.updateStatusBlock(idUser);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("");
                 alert.setTitle("");
                 alert.setContentText("L'utilisateur a été bloqué avec succès.");
                 alert.showAndWait();
             }
-
             // Mise à jour des éléments de la table après modification
             tvUsers.setItems(FXCollections.observableList(userController.getAll()));
         }
-
     }
 
     @javafx.fxml.FXML
@@ -110,15 +109,16 @@ public class GestionUsersController implements Initializable {
         User selectedUser = tvUsers.getSelectionModel().getSelectedItem();
         if (selectedUser == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("");
             alert.setTitle("Erreur");
             alert.setContentText("Veuillez sélectionner un utilisateur avant de continuer.");
             alert.showAndWait();
-        }else {
-            int selectedUserId= tvUsers.getSelectionModel().getSelectedItem().getIdUser();
+        } else {
+            int selectedUserId = tvUsers.getSelectionModel().getSelectedItem().getIdUser();
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("");
             alert.setTitle("Confirmation de suppression");
-            alert.setHeaderText("Supprimer l'utilisateur ?");
             alert.setContentText("Voulez-vous vraiment supprimer cet utilisateur ? Attention, cette action est irréversible !");
 
             Optional<ButtonType> result = alert.showAndWait();
@@ -127,26 +127,67 @@ public class GestionUsersController implements Initializable {
                 userController.supprimerUser(selectedUserId); // Exemple d'appel au contrôleur
                 tvUsers.getItems().remove(tvUsers.getSelectionModel().getSelectedItem()); // Retirer de la liste observable
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("");
                 successAlert.setTitle("Succès");
-                successAlert.setHeaderText("Utilisateur supprimé");
                 successAlert.setContentText("L'utilisateur a été supprimé avec succès.");
                 successAlert.showAndWait();
             } else {
                 // Annuler la suppression
                 Alert cancelAlert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("");
                 cancelAlert.setTitle("Annulation");
-                cancelAlert.setHeaderText("Suppression annulée");
-                cancelAlert.setContentText("Aucune modification n'a été effectuée.");
+                cancelAlert.setContentText("Suppression annulée. Aucune modification n'a été effectuée.");
                 cancelAlert.showAndWait();
             }
         }
-
     }
 
-
     @javafx.fxml.FXML
-    public void btnModifierMdpClicked(Event event) {
+    public void btnModifierMdpClicked(Event event) throws SQLException {
+        User selectedUser = tvUsers.getSelectionModel().getSelectedItem();
+        //System.out.println(selectedUser.getRenouvellerMdpUser() instanceof String);
+        if (selectedUser == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("");
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez sélectionner un utilisateur avant de continuer.");
+            alert.showAndWait();
+        }
+        else if (selectedUser.getRenouvellerMdpUser().equals(String.valueOf(1))) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("");
+            alert.setTitle("Erreur");
+            alert.setContentText("L'utilisateur doit déjà modifier son mot de passe");
+            alert.showAndWait();
+        }else {
+            int idUser = selectedUser.getIdUser();
 
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("");
+            alert.setTitle("Confirmation de modification");
+            alert.setContentText("Voulez-vous vraiment forcer cet utilisateur à modifier son mot de passe? Attention, cette action est irréversible !");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Exécuter l'action de suppression
+                userController.renouvellerMdp(idUser);
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("");
+                successAlert.setTitle("Succès");
+                successAlert.setContentText("L'utilisateur doit modifié son mot de passe.");
+                successAlert.showAndWait();
+            } else {
+                // Annuler la modification
+                Alert cancelAlert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("");
+                cancelAlert.setTitle("Annulation");
+                cancelAlert.setContentText("Modification annulée. Aucune modification n'a été effectuée.");
+                cancelAlert.showAndWait();
+            }
+        }
+        // Mise à jour des éléments de la table après modification
+        tvUsers.setItems(FXCollections.observableList(userController.getAll()));
     }
 
     @javafx.fxml.FXML

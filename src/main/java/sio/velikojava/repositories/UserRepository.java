@@ -106,6 +106,11 @@ public class UserRepository implements RepositoryInterface<User, Integer>{
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
     }
+    public void renouvellerMdp(Integer id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user set nouveau_mdp=true where user.id=?");
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
 
 
 }

@@ -31,4 +31,7 @@ public class UserService {
     public void supprimerUser(Integer id) throws SQLException {
         userRepository.supprimerUser(id);
     }
+    public void renouvellerMdp(Integer id) throws SQLException {
+        userRepository.renouvellerMdp(id);
+    }
 }
