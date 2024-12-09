@@ -19,5 +19,14 @@ public class UserController {
     public ArrayList<User> getAll() throws SQLException{
         return userService.getAll();
     }
+    public boolean isBlocked(User user) throws SQLException {
+        return userService.isBlocked(user);
+    }
+    public void updateStatusBlock(Integer id) throws SQLException {
+        userService.updateStatusBlock(id);
+    }
+    public void updateStatusDeblock(Integer id) throws SQLException {
+        userService.updateStatusDeblock(id);
+    }
 
 }

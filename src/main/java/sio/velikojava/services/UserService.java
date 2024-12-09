@@ -19,4 +19,13 @@ public class UserService {
     public ArrayList<User> getAll() throws SQLException{
         return userRepository.getAll();
     }
+    public boolean isBlocked(User user) throws SQLException {
+        return userRepository.isBlocked(user);
+    }
+    public void updateStatusBlock(Integer id) throws SQLException {
+        userRepository.updateStatusBlock(id);
+    }
+    public void updateStatusDeblock(Integer id) throws SQLException {
+        userRepository.updateStatusDeblock(id);
+    }
 }

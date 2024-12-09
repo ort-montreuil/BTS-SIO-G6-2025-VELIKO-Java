@@ -73,4 +73,26 @@ public class UserRepository implements RepositoryInterface<User, Integer>{
         }
         return users;
     }
+
+    public boolean isBlocked(User user) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT is_blocked FROM user WHERE user.id=?");
+        preparedStatement.setInt(1, user.getIdUser());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getBoolean("is_blocked");
+    }
+
+    public void updateStatusBlock(Integer id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET is_blocked=true\n" +
+                "WHERE user.id=?");
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+
+    }
+    public void updateStatusDeblock(Integer id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET is_blocked=false\n" +
+                "WHERE user.id=?");
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
 }
