@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sio.velikojava.Controller.UserController;
 import sio.velikojava.model.User;
@@ -15,6 +12,7 @@ import sio.velikojava.tools.DataSourceProvider;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GestionUsersController implements Initializable {
@@ -87,9 +85,18 @@ public class GestionUsersController implements Initializable {
             if (userController.isBlocked(selectedUser)) {
 
                 userController.updateStatusDeblock(idUser);
+                userController.updateStatusDeblock(idUser);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("");
+                alert.setContentText("L'utilisateur a été débloqué avec succès.");
+                alert.showAndWait();
             } else {
 
                 userController.updateStatusBlock(idUser);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("");
+                alert.setContentText("L'utilisateur a été bloqué avec succès.");
+                alert.showAndWait();
             }
 
             // Mise à jour des éléments de la table après modification
@@ -99,7 +106,41 @@ public class GestionUsersController implements Initializable {
     }
 
     @javafx.fxml.FXML
-    public void btnSupprimerClicked(Event event) {
+    public void btnSupprimerClicked(Event event) throws SQLException {
+        User selectedUser = tvUsers.getSelectionModel().getSelectedItem();
+        if (selectedUser == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez sélectionner un utilisateur avant de continuer.");
+            alert.showAndWait();
+        }else {
+            int selectedUserId= tvUsers.getSelectionModel().getSelectedItem().getIdUser();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de suppression");
+            alert.setHeaderText("Supprimer l'utilisateur ?");
+            alert.setContentText("Voulez-vous vraiment supprimer cet utilisateur ? Attention, cette action est irréversible !");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Exécuter l'action de suppression
+                userController.supprimerUser(selectedUserId); // Exemple d'appel au contrôleur
+                tvUsers.getItems().remove(tvUsers.getSelectionModel().getSelectedItem()); // Retirer de la liste observable
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText("Utilisateur supprimé");
+                successAlert.setContentText("L'utilisateur a été supprimé avec succès.");
+                successAlert.showAndWait();
+            } else {
+                // Annuler la suppression
+                Alert cancelAlert = new Alert(Alert.AlertType.INFORMATION);
+                cancelAlert.setTitle("Annulation");
+                cancelAlert.setHeaderText("Suppression annulée");
+                cancelAlert.setContentText("Aucune modification n'a été effectuée.");
+                cancelAlert.showAndWait();
+            }
+        }
+
     }
 
 

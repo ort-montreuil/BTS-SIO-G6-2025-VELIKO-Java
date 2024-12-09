@@ -95,4 +95,17 @@ public class UserRepository implements RepositoryInterface<User, Integer>{
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
     }
+    public void supprimerUser(Integer id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user\n" +
+                "SET \n" +
+                "  email = CONCAT('anonymous_', FLOOR(RAND() * 100000)),\n" +
+                "  nom = 'anonymous_',\n" +
+                "  prenom = 'anonymous_',\n" +
+                "  verification_token = null\n" +
+                "WHERE id = ?;");
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
+
+
 }

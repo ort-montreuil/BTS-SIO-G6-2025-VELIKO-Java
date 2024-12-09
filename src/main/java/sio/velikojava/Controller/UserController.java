@@ -28,5 +28,8 @@ public class UserController {
     public void updateStatusDeblock(Integer id) throws SQLException {
         userService.updateStatusDeblock(id);
     }
+    public void supprimerUser(Integer id) throws SQLException {
+        userService.supprimerUser(id);
+    }
 
 }
