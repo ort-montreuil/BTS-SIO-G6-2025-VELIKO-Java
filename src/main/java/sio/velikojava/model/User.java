@@ -4,11 +4,21 @@ public class User {
     private int idUser;
     private String emailUser;
     private String mdpUser;
+    private String nomUser;
+    private String prenomUser;
+    private String villeUser;
+    private String statutUser;
+    private String renouvellerMdpUser;
 
-    public User(int idUser, String emailUser, String mdpUser) {
+    public User(int idUser, String emailUser, String mdpUser, String nomUser, String prenomUser, String villeUser, String statutUser, String renouvellerMdpUser) {
         this.idUser = idUser;
         this.emailUser = emailUser;
         this.mdpUser = mdpUser;
+        this.nomUser = nomUser;
+        this.prenomUser = prenomUser;
+        this.villeUser = villeUser;
+        this.statutUser = statutUser;
+        this.renouvellerMdpUser = renouvellerMdpUser;
     }
 
     public int getIdUser() {
@@ -35,4 +45,43 @@ public class User {
         this.mdpUser = mdpUser;
     }
 
+    public String getNomUser() {
+        return nomUser;
+    }
+
+    public void setNomUser(String nomUser) {
+        this.nomUser = nomUser;
+    }
+
+    public String getPrenomUser() {
+        return prenomUser;
+    }
+
+    public void setPrenomUser(String prenomUser) {
+        this.prenomUser = prenomUser;
+    }
+
+    public String getVilleUser() {
+        return villeUser;
+    }
+
+    public void setVilleUser(String villeUser) {
+        this.villeUser = villeUser;
+    }
+
+    public String getStatutUser() {
+        return statutUser;
+    }
+
+    public void setStatutUser(String statutUser) {
+        this.statutUser = statutUser;
+    }
+
+    public String getRenouvellerMdpUser() {
+        return renouvellerMdpUser;
+    }
+
+    public void setRenouvellerMdpUser(String nouveauMdpUser) {
+        this.renouvellerMdpUser = nouveauMdpUser;
+    }
 }

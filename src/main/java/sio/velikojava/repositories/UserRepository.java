@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class UserRepository {
+public class UserRepository implements RepositoryInterface<User, Integer>{
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
@@ -38,5 +39,38 @@ public class UserRepository {
         ps.close();
         rs.close();
         return result;
+    }
+
+    @Override
+    public void create(User obj) throws SQLException {
+
+    }
+
+    @Override
+    public void update(User obj) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(Integer integer) {
+
+    }
+
+    @Override
+    public User get(Integer integer) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<User> getAll() throws SQLException {
+        ArrayList<User> users = new ArrayList<>();
+        PreparedStatement ps = connection.prepareStatement("SELECT id, email,password, nom, prenom, ville , is_blocked, nouveau_mdp\n" +
+                "FROM user\n" +
+                "WHERE JSON_LENGTH(user.roles) = 0 and nom != 'anonymous_'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            users.add(new User(rs.getInt("id"), rs.getString("email"),rs.getString("password"), rs.getString("nom"), rs.getString("prenom"), rs.getString("ville"), rs.getString("is_blocked"), rs.getString("nouveau_mdp")));
+        }
+        return users;
     }
 }
