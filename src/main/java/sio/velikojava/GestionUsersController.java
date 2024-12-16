@@ -3,13 +3,21 @@ package sio.velikojava;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import sio.velikojava.Controller.UserController;
 import sio.velikojava.model.User;
 import sio.velikojava.tools.DataSourceProvider;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -38,9 +46,12 @@ public class GestionUsersController implements Initializable {
     private Button btnSupprimer;
     @javafx.fxml.FXML
     private Button btnModifierMdp;
+    @FXML
+    private ImageView imgRetour;
 
     DataSourceProvider cnx;
     UserController userController;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,6 +77,9 @@ public class GestionUsersController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        Image image = new Image(getClass().getResource("/images/back.png").toString());
+
+        imgRetour.setImage(image);
     }
 
     @javafx.fxml.FXML
@@ -198,5 +212,16 @@ public class GestionUsersController implements Initializable {
         } else {
             btnBloquer.setText("Bloquer");
         }
+    }
+
+    @FXML
+    public void imgRetourClicked(Event event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("map-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Obtenir la scène actuelle et définir le nouveau contenu
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

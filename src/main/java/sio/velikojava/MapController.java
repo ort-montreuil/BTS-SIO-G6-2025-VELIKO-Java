@@ -3,14 +3,24 @@ package sio.velikojava;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -28,6 +38,15 @@ public class MapController implements Initializable {
 
     private final String apiUrl = "http://localhost"; // Replace with the correct URL
     private final int apiPort = 9042; // Ensure the port matches your API
+    @FXML
+    private Button btnCarte;
+    @FXML
+    private Button btnAPropos;
+    @FXML
+    private Button btnGestionUser;
+    @FXML
+    private ImageView imgLogo;
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -69,6 +88,11 @@ public class MapController implements Initializable {
                 webEngine.executeScript("updateMap(" + new Gson().toJson(stations) + ")");
             }
         });
+
+        Image image = new Image(getClass().getResource("/images/logo1.png").toString());
+
+        imgLogo.setImage(image);
+
     }
 
     private List<JsonObject> fetchStationData() {
@@ -135,5 +159,41 @@ public class MapController implements Initializable {
         } else {
             throw new RuntimeException("Failed to fetch data: HTTP " + responseCode);
         }
+    }
+
+    @FXML
+    public void menuClicked(ActionEvent actionEvent) throws IOException {
+        if (actionEvent.getSource() == btnCarte) {
+            // Charger le fichier FXML
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("map-view.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Obtenir la scène actuelle et définir le nouveau contenu
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+
+        if (actionEvent.getSource() == btnGestionUser) {
+            // Charger le fichier FXML
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("gestionUsers-view.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Obtenir la scène actuelle et définir le nouveau contenu
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        if (actionEvent.getSource() == btnAPropos) {
+            // Charger le fichier FXML
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("map-view.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Obtenir la scène actuelle et définir le nouveau contenu
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+
     }
 }
