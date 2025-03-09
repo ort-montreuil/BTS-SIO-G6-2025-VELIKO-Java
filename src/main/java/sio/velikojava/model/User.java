@@ -9,6 +9,12 @@ public class User {
     private String villeUser;
     private String statutUser;
     private String renouvellerMdpUser;
+    private int nombre_trajets;
+
+    public User(String emailUser, int nombre_trajets) {
+        this.emailUser = emailUser;
+        this.nombre_trajets = nombre_trajets;
+    }
 
     public User(int idUser, String emailUser, String mdpUser, String nomUser, String prenomUser, String villeUser, String statutUser, String renouvellerMdpUser) {
         this.idUser = idUser;
@@ -19,6 +25,14 @@ public class User {
         this.villeUser = villeUser;
         this.statutUser = statutUser;
         this.renouvellerMdpUser = renouvellerMdpUser;
+    }
+
+    public int getNombre_trajets() {
+        return nombre_trajets;
+    }
+
+    public void setNombre_trajets(int nombre_trajets) {
+        this.nombre_trajets = nombre_trajets;
     }
 
     public int getIdUser() {
