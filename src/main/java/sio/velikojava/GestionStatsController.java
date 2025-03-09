@@ -30,7 +30,7 @@ public class GestionStatsController
 
         if (actionEvent.getSource() == btnStatReservation) {
             // Charger le fichier FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("gestionStats-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("reservationStats-view.fxml"));
             Parent root = fxmlLoader.load();
 
             // Obtenir la scène actuelle et définir le nouveau contenu
