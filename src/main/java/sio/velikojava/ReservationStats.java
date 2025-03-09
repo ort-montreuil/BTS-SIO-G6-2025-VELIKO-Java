@@ -19,8 +19,6 @@ public class ReservationStats {
     private Label lblNbrTotResa;
     @javafx.fxml.FXML
     private Label lblTempsMoyen;
-    @javafx.fxml.FXML
-    private Label lblNbrTotResa1;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         connexion = new DataSourceProvider();
