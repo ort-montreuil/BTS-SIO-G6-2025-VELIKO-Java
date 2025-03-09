@@ -5,6 +5,7 @@ module sio.velikojava {
     requires javafx.web;
     requires java.sql;
     requires spring.security.crypto;
+    requires jdk.jfr;
 
     opens sio.velikojava.model to javafx.base;
 

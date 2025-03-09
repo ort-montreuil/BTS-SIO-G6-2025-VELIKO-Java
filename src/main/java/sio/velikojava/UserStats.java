@@ -1,12 +1,19 @@
 package sio.velikojava;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import jdk.jfr.Event;
 import sio.velikojava.Controller.StatUserController;
 import sio.velikojava.tools.DataSourceProvider;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +24,15 @@ public class UserStats {
 
     DataSourceProvider cnx;
     StatUserController statUserController;
-    XYChart.Series<String, Number> seriesTop ;
+    XYChart.Series<String, Number> seriesTop;
 
     private HashMap<String, Integer> dataGraphiqueAge;
     @javafx.fxml.FXML
     private BarChart barChartTopUser;
     @javafx.fxml.FXML
     private Label lblNbrUserTot;
+    @javafx.fxml.FXML
+    private Button btnRetour;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         cnx = new DataSourceProvider();
@@ -55,9 +64,14 @@ public class UserStats {
 
 
         //Nombre Total Users
-       lblNbrUserTot.setText(String.valueOf(statUserController.getAllUsers()));
+        lblNbrUserTot.setText(String.valueOf(statUserController.getAllUsers()));
 
 
+    }
+
+    @javafx.fxml.FXML
+    public void btnRetourClicked(javafx.event.ActionEvent event)
+    {
 
     }
 }

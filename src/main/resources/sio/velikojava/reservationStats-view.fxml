@@ -4,23 +4,54 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.velikojava.ReservationStats">
+<AnchorPane prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.velikojava.ReservationStats" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);">
    <children>
-      <HBox prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: darkblue;">
+      <!-- En-tête -->
+      <HBox prefHeight="80.0" prefWidth="650.0" style="-fx-background-color: rgba(0,0,0,0.7); -fx-border-radius: 10; -fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" prefHeight="98.0" prefWidth="605.0" text="Statistique Reservations" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="80.0" prefWidth="650.0" text="Statistiques Réservations" textFill="WHITE">
                <font>
-                  <Font size="48.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Label layoutX="219.0" layoutY="134.0" text="Nombre total de reservations :" />
-      <Label fx:id="lblNbrTotResa" layoutX="263.0" layoutY="162.0" text="NbrTotalResa" />
-      <Label layoutX="236.0" layoutY="200.0" text="Temps moyen par trajet" />
-      <Label fx:id="lblTempsMoyen" alignment="CENTER" layoutX="244.0" layoutY="223.0" prefHeight="17.0" prefWidth="113.0" text="temps moyen" />
-      <PieChart fx:id="pieChartTypeVelo" layoutX="14.0" layoutY="223.0" prefHeight="168.0" prefWidth="210.0" />
+
+      <!-- Contenu Principal -->
+      <VBox layoutX="50.0" layoutY="120.0" spacing="15">
+         <children>
+            <Label text="Nombre total de réservations :" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNbrTotResa" text="0" textFill="CYAN">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+
+            <Label text="Temps moyen par trajet :" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTempsMoyen" text="0 min" textFill="CYAN">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+
+      <!-- Graphique -->
+      <PieChart fx:id="pieChartTypeVelo" layoutX="350.0" layoutY="120.0" prefHeight="250.0" prefWidth="250.0" />
+
+      <!-- Décoration -->
+      <Rectangle layoutX="20.0" layoutY="110.0" width="610.0" height="280.0" arcWidth="30.0" arcHeight="30.0" style="-fx-fill: rgba(255, 255, 255, 0.15);" />
    </children>
 </AnchorPane>
