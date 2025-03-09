@@ -31,8 +31,6 @@ public class UserStats {
     private BarChart barChartTopUser;
     @javafx.fxml.FXML
     private Label lblNbrUserTot;
-    @javafx.fxml.FXML
-    private Button btnRetour;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         cnx = new DataSourceProvider();
@@ -69,7 +67,7 @@ public class UserStats {
 
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void btnRetourClicked(javafx.event.ActionEvent event)
     {
 

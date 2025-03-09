@@ -4,7 +4,6 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,12 +19,9 @@
             </children>
         </HBox>
 
-        <!-- Retour -->
-        <Button fx:id="btnRetour" layoutX="20.0" layoutY="70.0" onMouseClicked="#btnRetourClicked" prefWidth="100.0" style="-fx-background-color: #FFD700; -fx-text-fill: black; -fx-font-size: 14px; -fx-font-weight: bold; -fx-border-radius: 8; -fx-background-radius: 8;" text="Retour" />
-
         <!-- Nombre total d'utilisateurs -->
-        <Label layoutX="230.0" layoutY="80.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Nombre total d'utilisateurs :" />
-        <Label fx:id="lblNbrUserTot" layoutX="320.0" layoutY="110.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #FFD700;" text="0" />
+        <Label layoutX="227.0" layoutY="66.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Nombre total d'utilisateurs :" />
+        <Label fx:id="lblNbrUserTot" layoutX="317.0" layoutY="96.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #FFD700;" text="0" />
 
         <!-- Graphique en camembert -->
         <Label layoutX="40.0" layoutY="140.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Répartition par âge :" />
@@ -43,6 +39,6 @@
         </BarChart>
 
         <!-- Effet de profondeur -->
-        <Rectangle layoutX="20.0" layoutY="130.0" width="610.0" height="280.0" arcWidth="30.0" arcHeight="30.0" style="-fx-fill: rgba(255, 255, 255, 0.15);" />
+        <Rectangle arcHeight="30.0" arcWidth="30.0" height="280.0" layoutX="20.0" layoutY="130.0" style="-fx-fill: rgba(255, 255, 255, 0.15);" width="610.0" />
     </children>
 </AnchorPane>

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.velikojava.ReservationStats" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);">
+<AnchorPane prefHeight="450.0" prefWidth="650.0" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.velikojava.ReservationStats">
    <children>
       <!-- En-tête -->
       <HBox prefHeight="80.0" prefWidth="650.0" style="-fx-background-color: rgba(0,0,0,0.7); -fx-border-radius: 10; -fx-background-radius: 10;">
@@ -49,9 +49,9 @@
       </VBox>
 
       <!-- Graphique -->
-      <PieChart fx:id="pieChartTypeVelo" layoutX="350.0" layoutY="120.0" prefHeight="250.0" prefWidth="250.0" />
+      <PieChart fx:id="pieChartTypeVelo" layoutX="350.0" layoutY="120.0" prefHeight="250.0" prefWidth="250.0" title="Type de vélos réservés" />
 
       <!-- Décoration -->
-      <Rectangle layoutX="20.0" layoutY="110.0" width="610.0" height="280.0" arcWidth="30.0" arcHeight="30.0" style="-fx-fill: rgba(255, 255, 255, 0.15);" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" height="280.0" layoutX="20.0" layoutY="110.0" style="-fx-fill: rgba(255, 255, 255, 0.15);" width="610.0" />
    </children>
 </AnchorPane>

@@ -18,8 +18,6 @@ public class GestionStatsController
     private Button btnStatReservation;
     @javafx.fxml.FXML
     private Button btnStatUser;
-    @javafx.fxml.FXML
-    private Button btnRetour;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -31,42 +29,29 @@ public class GestionStatsController
         if (actionEvent.getSource() == btnStatReservation) {
             // Charger le fichier FXML
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("reservationStats-view.fxml"));
-            Parent root = fxmlLoader.load();
-
-            // Obtenir la scène actuelle et définir le nouveau contenu
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Statistique des Stations");
+            stage.setScene(scene);
             stage.show();
         }
 
         if (actionEvent.getSource() == btnStatUser) {
             // Charger le fichier FXML
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("userStats-view.fxml"));
-            Parent root = fxmlLoader.load();
-
-            // Obtenir la scène actuelle et définir le nouveau contenu
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Statistique des Stations");
+            stage.setScene(scene);
             stage.show();
         }
         if (actionEvent.getSource() == btnStatStation) {
             // Charger le fichier FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("gestionStats-view.fxml"));
-            Parent root = fxmlLoader.load();
-
-            // Obtenir la scène actuelle et définir le nouveau contenu
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        if (actionEvent.getSource() == btnRetour) {
-            // Charger le fichier FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("map-view.fxml"));
-            Parent root = fxmlLoader.load();
-
-            // Obtenir la scène actuelle et définir le nouveau contenu
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("stationStats-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Statistique des Stations");
+            stage.setScene(scene);
             stage.show();
         }
     }

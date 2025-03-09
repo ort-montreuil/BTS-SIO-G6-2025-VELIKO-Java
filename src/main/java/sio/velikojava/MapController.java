@@ -184,14 +184,13 @@ public class MapController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }
-        if (actionEvent.getSource() == btnAPropos) {
-            // Charger le fichier FXML
+        if (actionEvent.getSource() == btnAPropos)
+        {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("gestionStats-view.fxml"));
-            Parent root = fxmlLoader.load();
-
-            // Obtenir la scène actuelle et définir le nouveau contenu
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Statistique des Stations");
+            stage.setScene(scene);
             stage.show();
         }
 
