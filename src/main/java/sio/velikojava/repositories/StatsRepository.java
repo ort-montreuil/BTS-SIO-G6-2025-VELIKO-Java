@@ -1,6 +1,7 @@
 package sio.velikojava.repositories;
 
 import sio.velikojava.model.User;
+import sio.velikojava.tools.DataSourceProvider;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +14,18 @@ public class StatsRepository implements RepositoryInterface{
     private PreparedStatement ps;
     private ResultSet rs;
 
+    public StatsRepository() {this.connection= DataSourceProvider.getCnx();
+    }
 
-    public double tempsMoyenTraget() throws SQLException
+
+    public double tempsMoyenTrajet() throws SQLException
     {
         double tempsMoyen = 0;
-        ps = connection.prepareStatement("private Connection connection;\n" +
-                "    private PreparedStatement ps;\n" +
-                "    private ResultSet rs;");
+        ps = connection.prepareStatement("SELECT AVG(TIMESTAMPDIFF(MINUTE, heure_debut, heure_fin)) \n" +
+                "AS duree_moyenne \n" +
+                "FROM reservation;");
         rs = ps.executeQuery();
+        rs.next();
         tempsMoyen = rs.getDouble("duree_moyenne");
 
         return tempsMoyen;

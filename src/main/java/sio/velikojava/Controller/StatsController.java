@@ -13,9 +13,9 @@ public class StatsController
         this.statsService = new StatsService();
     }
 
-    public double tempsMoyenTraget() throws SQLException
+    public double tempsMoyenTrajet() throws SQLException
     {
-        return statsService.tempsMoyenTraget();
+        return statsService.tempsMoyenTrajet();
     }
 
 

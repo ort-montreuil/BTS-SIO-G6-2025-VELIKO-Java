@@ -12,9 +12,9 @@ public class StatsService
         this.statsRepository = new StatsRepository();
     }
 
-    public double tempsMoyenTraget() throws SQLException
+    public double tempsMoyenTrajet() throws SQLException
     {
-        return statsRepository.tempsMoyenTraget();
+        return statsRepository.tempsMoyenTrajet();
     }
 
 
