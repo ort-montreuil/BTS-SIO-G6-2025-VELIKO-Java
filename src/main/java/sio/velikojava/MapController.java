@@ -186,7 +186,7 @@ public class MapController implements Initializable {
         }
         if (actionEvent.getSource() == btnAPropos) {
             // Charger le fichier FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("map-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("gestionStats-view.fxml"));
             Parent root = fxmlLoader.load();
 
             // Obtenir la scène actuelle et définir le nouveau contenu
