@@ -5,19 +5,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="650.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.velikojava.StationStats">
+<AnchorPane prefHeight="450.0" prefWidth="650.0" style="-fx-background-color: linear-gradient(to bottom, #2A2A72, #009FFD);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.velikojava.StationStats">
 
     <children>
-      <Label fx:id="lblNbrStationTot1" layoutX="243.0" layoutY="14.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Nombre total de stations" />
+      <Label fx:id="lblNbrStationTot1" layoutX="243.0" layoutY="14.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Nombre total de stations" textFill="WHITE" />
         <!-- Label pour le nombre total de stations -->
-        <Label fx:id="lblNbrStationTot" alignment="CENTER" contentDisplay="CENTER" layoutX="243.0" layoutY="34.0" text="Nombre total de stations">
+        <Label fx:id="lblNbrStationTot" alignment="CENTER" contentDisplay="CENTER" layoutX="243.0" layoutY="34.0" text="Nombre total de stations" textFill="WHITE">
             <style>-fx-font-size: 16px; -fx-font-weight: bold;</style>
         </Label>
-      <Label alignment="CENTER" layoutX="224.0" layoutY="103.0" prefHeight="17.0" prefWidth="204.0" text="Station la plus utilisée (départ) :" />
+      <Label alignment="CENTER" layoutX="224.0" layoutY="103.0" prefHeight="17.0" prefWidth="204.0" text="Station la plus utilisée (départ) :" textFill="WHITE" />
       <Label fx:id="lblStationPlusUtil" alignment="CENTER" layoutX="215.0" layoutY="126.0" prefHeight="17.0" prefWidth="221.0" />
-      <Label alignment="CENTER" layoutX="224.0" layoutY="162.0" prefHeight="17.0" prefWidth="204.0" text="Station la plus utilisée (arrivée) :" />
+      <Label alignment="CENTER" layoutX="224.0" layoutY="162.0" prefHeight="17.0" prefWidth="204.0" text="Station la plus utilisée (arrivée) :" textFill="WHITE" />
       <Label fx:id="lblStationPlusUtil2" alignment="CENTER" layoutX="215.0" layoutY="185.0" prefHeight="17.0" prefWidth="221.0" />
-      <TableView fx:id="tvStations" layoutX="161.0" layoutY="225.0" prefHeight="200.0" prefWidth="330.0">
+      <TableView fx:id="tvStations" layoutX="172.0" layoutY="225.0" prefHeight="200.0" prefWidth="330.0">
         <columns>
           <TableColumn fx:id="tcNomStation" prefWidth="194.0" text="Nom Station" />
           <TableColumn fx:id="tcNvDep" prefWidth="135.0" text="Nombre de réservations" />

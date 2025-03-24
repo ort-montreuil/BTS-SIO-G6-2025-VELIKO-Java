@@ -28,11 +28,17 @@ public class StatStationRepository
     }
 
     public String StationLaPlusUtiliseeDepart() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT s.name\n" +
-                "FROM reservation r \n" +
-                "JOIN station s ON r.id_station_depart = s.id \n" +
-                "GROUP BY s.name \n" +
-                "LIMIT 1;");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT station.name, COUNT(*)\n" +
+                "FROM station\n" +
+                "inner join reservation ON reservation.id_station_depart = station.station_id\n" +
+                "GROUP by station.name\n" +
+                "having count(*)=(\n" +
+                "select MAX(nb)\n" +
+                "from(\n" +
+                "SELECT station.name, COUNT(*) as nb\n" +
+                "FROM station\n" +
+                "INNER JOIN reservation ON reservation.id_station_depart= station.station_id\n" +
+                "GROUP by station.name) as temp)");
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
         return resultSet.getString(1);
